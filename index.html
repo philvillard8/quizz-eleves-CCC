@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Privé - Espace Connecté</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- ÉCRAN D'AUTHENTIFICATION STRICTE -->
+        <div id="auth-screen">
+            <h2>Connexion au Quiz</h2>
+            <form id="auth-form">
+                <label>Nom d'utilisateur</label>
+                <input type="text" id="auth-username" required placeholder="Votre identifiant">
+                
+                <label>Mot de passe</label>
+                <input type="password" id="auth-password" required placeholder="********">
+                
+                <button type="submit">Se connecter</button>
+            </form>
+            <div class="nav-links">
+                🔒 Accès restreint. Aucun enregistrement public autorisé.
+            </div>
+        </div>
+
+        <!-- ÉCRAN DE SÉLECTION DU QUIZ (ÉLÈVES) -->
+        <div id="quiz-selection-screen" class="hidden">
+            <h2>Sélectionner un Quiz</h2>
+            <p>Bienvenue, l'utilisateur connecté est : <strong id="logged-username"></strong></p>
+            
+            <div id="student-view">
+                <label>Choisissez votre questionnaire :</label>
+                <select id="quiz-selector">
+                    <option value="">-- Charger les quiz disponibles --</option>
+                </select>
+                <div id="quiz-stats" class="hidden"></div>
+                <button id="start-quiz-btn" style="margin-top:10px;">Commencer le Quiz</button>
+            </div>
+
+            <!-- Bouton d'accès rapide pour le prof -->
+            <button id="go-admin-btn" class="admin-btn hidden">Accéder au Panneau Enseignant</button>
+            <button id="logout-btn" style="background: #95a5a6; margin-top: 15px;">Se déconnecter</button>
+        </div>
+
+
+        <!-- ÉCRAN DU QUESTIONNAIRE (DYNAMIQUE) -->
+        <div id="quiz-play-screen" class="hidden">
+            <h2 id="current-quiz-title">Titre du Quiz</h2>
+            <form id="quiz-form">
+                <!-- Les blocs de questions seront injectés ici par le JavaScript -->
+                <div id="dynamic-questions-container"></div>
+                
+                <button type="submit">Valider mes réponses</button>
+            </form>
+            <div id="feedback" class="hidden"></div>
+            <button id="back-select-btn" class="hidden" style="background:#7f8c8d; margin-top:10px;">Retour à la sélection</button>
+        </div>
+
+
+        <!-- PANNEAU DE RESTRUCTURATION ENSEIGNANT (PROTÉGÉ) -->
+        <div id="admin-screen" class="hidden">
+            <h2>Espace Enseignant 🎓</h2>
+            <div class="stat-badge admin-box">
+                🛠️ Suivi en temps réel des évaluations et des performances des élèves.
+            </div>
+
+            <div class="flex-filters">
+                <div style="flex: 2;">
+                    <label>Filtrer par Quiz :</label>
+                    <select id="admin-filter-quiz">
+                        <option value="">-- Tous les quiz --</option>
+                    </select>
+                </div>
+                <!-- Zone d'affichage de la moyenne ajoutée -->
+                <div id="admin-quiz-stats" style="flex: 1; display: flex; align-items: flex-end; padding-bottom: 20px;">
+                    <!-- Sera injecté par le JavaScript -->
+                </div>
+            </div>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Élève</th>
+                        <th>Quiz</th>
+                        <th>Réponses</th>
+                        <th>Note / 3</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-results-table">
+                    <tr>
+                        <td colspan="5" style="text-align:center; color:#7f8c8d;">Aucune donnée chargée.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- FORMULAIRE DE CRÉATION DE QUIZ (AJOUTÉ) -->
+            <div class="question-block admin-box" style="margin-top: 30px; background: #fafaff;">
+                <!-- BOUTON D'AFFICHAGE DU FORMULAIRE -->
+                <button id="toggle-create-zone-btn" class="admin-btn" style="background: #2c3e50; margin-top: 20px;">➕ Créer un nouveau Quiz</button>
+
+                <!-- FORMULAIRE DE CRÉATION DE QUIZ (MASQUÉ PAR DÉFAUT) -->
+                <div id="create-quiz-section" class="question-block admin-box hidden" style="margin-top: 15px; background: #fafaff;">
+                    <h3 style="color: var(--admin); margin-top: 0;">➕ Configuration du nouveau Quiz</h3>
+                    <form id="create-quiz-form">
+                        <label>Titre du Quiz (Unique)</label>
+                        <input type="text" id="new-quiz-title" required placeholder="Ex: Quiz Géographie Europe">
+                        
+                        <label>Classe / Groupe cible</label>
+                        <input type="text" id="new-quiz-group" required placeholder="Ex: 3e1">
+
+                        <div id="new-questions-container">
+                            <!-- Les blocs de création de question seront insérés ici -->
+                        </div>
+
+                        <button type="button" id="add-question-form-btn" style="background: #34495e; margin-bottom: 15px;">➕ Ajouter une Question</button>
+                        <button type="submit" style="background: var(--success);">💾 Publier le Quiz sur Supabase</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            <button id="back-from-admin-btn" style="background:#7f8c8d; margin-top:20px;">Retour au menu</button>
+        </div>
+    </div>
+
+    <script src="./supabase.js"></script>
+    <script type="module" src="./script.js"></script>
+
+</body>
+</html>
+
+

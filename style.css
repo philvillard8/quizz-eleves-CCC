@@ -1,0 +1,35 @@
+        :root {
+            --primary: #3498db;
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --admin: #8e44ad;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: var(--dark); }
+        .container { max-width: 750px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .hidden { display: none !important; }
+        h1, h2 { text-align: center; color: var(--dark); }
+        input, select { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { opacity: 0.9; }
+        .nav-links { text-align: center; margin-top: 15px; color: #7f8c8d; font-size: 14px; }
+        .question-block { margin-bottom: 20px; padding: 15px; background: var(--light); border-radius: 6px; }
+        .options-block label { display: block; margin: 8px 0; padding: 8px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; }
+        .options-block input { width: auto; margin-right: 10px; }
+        .stat-badge { background: #eef2f7; padding: 10px; border-left: 4px solid var(--primary); margin: 10px 0; font-size: 14px; }
+        #feedback { margin-top: 20px; padding: 15px; border-radius: 4px; text-align: center; font-weight: bold; }
+        .success-box { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error-box { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        /* Styles spécifiques Espace Enseignant */
+        .admin-box { border-left: 4px solid var(--admin) !important; }
+        .admin-btn { background: var(--admin); margin-top: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f6f8; color: var(--dark); }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .badge-note { padding: 4px 8px; border-radius: 4px; font-weight: bold; color: white; }
+        .badge-high { background-color: var(--success); }
+        .badge-low { background-color: var(--error); }
+        .flex-filters { display: flex; gap: 10px; }
